@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f4f4f4;
+    }
+    .login-container {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 300px;
+    }
+    .login-container h2 {
+      margin: 0 0 15px;
+    }
+    .login-container input {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    .login-container button {
+      width: 100%;
+      padding: 10px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .login-container button:hover {
+      background-color: #218838;
+    }
+    .message {
+      margin: 10px 0;
+      color: red;
+    }
+    .welcome {
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Login</h2>
+    <p>Practical No. 10</p>
+    <p>S122 ANANYA</p>
+
+    <form id="loginForm">
+      <input type="text" id="username" placeholder="Username" required><br>
+      <input type="password" id="password" placeholder="Password" required><br>
+      <button type="button" onclick="validateLogin()">Login</button>
+    </form>
+    <div id="message" class="message"></div>
+  </div>
+
+  <script>
+    // Predefined credentials
+    const PREDEFINED_USERNAME = "Ananya";
+    const PREDEFINED_PASSWORD = "ananya25"; // Must be 8 characters or less
+
+    // Maximum number of login attempts
+    let attempts = 3;
+
+    function validateLogin() {
+      // Get user input
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const messageElement = document.getElementById('message');
+
+      // Clear previous messages
+      messageElement.textContent = '';
+
+      // Check credentials
+      if (username === PREDEFINED_USERNAME && password === PREDEFINED_PASSWORD) {
+        messageElement.textContent = 'Welcome!';
+        messageElement.className = 'message welcome';
+      } else {
+        // Validate password length
+        if (password.length > 8) {
+          messageElement.textContent = 'Error: Password must be at most 8 characters.';
+        } else {
+          attempts--;
+          if (attempts > 0) {
+            messageElement.textContent = `Error: Incorrect username or password. ${attempts} attempt(s) left.`;
+          } else {
+            messageElement.textContent = 'Maximum attempts reached. The application will now end.';
+            document.getElementById('loginForm').reset();
+            // Disable the form after max attempts
+            document.querySelector('button').disabled = true;
+          }
+        }
+        messageElement.className = 'message';
+      }
+    }
+  </script>
+</body>
+</html>
