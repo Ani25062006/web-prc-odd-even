@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interest Calculator</title>
+  <script>
+    function calculateInterest() {
+      // Get the values from input fields
+      var principleAmount = parseFloat(document.getElementById('principleAmount').value);
+      var years = parseFloat(document.getElementById('years').value);
+      var rate = parseFloat(document.getElementById('rate').value);
+      
+      // Calculate simple interest
+      var interest = (principleAmount * rate * years) / 100;
+      
+      // Display the interest
+      document.getElementById('interestResult').textContent = 'Simple Interest: $' + interest.toFixed(2);
+      return interest;
+    }
+
+    function calculateFinalAmount() {
+      // Get the values from input fields
+      var principleAmount = parseFloat(document.getElementById('principleAmount').value);
+      var interest = calculateInterest(); // Call the function to calculate interest
+
+      // Calculate final amount
+      var finalAmount = principleAmount + interest;
+
+      // Display the final amount
+      document.getElementById('finalAmountResult').textContent = 'Final Amount: $' + finalAmount.toFixed(2);
+    }
+  </script>
+</head>
+<body>
+  <h1>Simple Interest Calculator</h1>
+  <p>SHETH L.U.J. & SIR M.V. COLLEGE OF ARTS, SCI & COMMERCE</p>
+  <p>Practical No. 9</p>
+
+  <label for="principleAmount">Principle Amount ($):</label>
+  <input type="text" id="principleAmount" required><br><br>
+
+  <label for="years">Number of Years:</label>
+  <input type="text" id="years" required><br><br>
+
+  <label for="rate">Rate of Interest (% per annum):</label>
+  <input type="text" id="rate" required><br><br>
+
+  <button onclick="calculateInterest()">Calculate Interest</button>
+  <button onclick="calculateFinalAmount()">Final Amount</button>
+
+  <p id="interestResult"></p>
+  <p id="finalAmountResult"></p>
+</body>
+</html>
