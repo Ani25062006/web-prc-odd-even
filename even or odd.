@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Even or Odd Checker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f4;
+      margin: 0;
+    }
+    .container {
+      text-align: center;
+      padding: 20px;
+      background: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    input, button {
+      padding: 10px;
+      margin: 10px;
+      font-size: 16px;
+    }
+    #result {
+      font-size: 18px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Even or Odd Checker</h1>
+    <p>SHETH L.U.J. AND SIR M.V. COLLEGE</p>
+    <p>Practical No. 7</p>
+    <input type="number" id="numberInput" placeholder="Enter a number">
+    <button onclick="checkEvenOdd()">Check</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function checkEvenOdd() {
+      // Get the input value
+      var input = document.getElementById('numberInput').value;
+      var resultDiv = document.getElementById('result');
+
+      // Ensure the input is a number
+      var number = parseInt(input, 10);
+      if (isNaN(number)) {
+        resultDiv.textContent = 'Please enter a valid number.';
+        return;
+      }
+      // Check if the number is even or odd
+      if (number % 2 === 0) {
+        resultDiv.textContent = number + ' is even.';
+      } else {
+        resultDiv.textContent = number + ' is odd.';
+      }
+    }
+  </script>
+</body>
+</html>
