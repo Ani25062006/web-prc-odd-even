@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter with setTimeout and clearTimeout</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        #counter {
+            font-size: 3rem;
+            margin: 20px 0;
+        }
+
+        button {
+            font-size: 1rem;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Counter</h1>
+        <div id="counter">0</div>
+        <button id="startButton">Start</button>
+        <button id="stopButton">Stop</button>
+    </div>
+    <script>
+        let count = 0;
+        let timerId;
+
+        const counterElement = document.getElementById('counter');
+        const startButton = document.getElementById('startButton');
+        const stopButton = document.getElementById('stopButton');
+
+        function updateCounter() {
+            count++;
+            counterElement.textContent = count;
+            timerId = setTimeout(updateCounter, 1000);
+        }
+
+        function startCounter() {
+            if (!timerId) {
+                updateCounter();
+            }
+        }
+
+        function stopCounter() {
+            clearTimeout(timerId);
+            timerId = null;
+        }
+
+        startButton.addEventListener('click', startCounter);
+        stopButton.addEventListener('click', stopCounter);
+    </script>
+</body>
+</html>
